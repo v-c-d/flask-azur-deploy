@@ -126,4 +126,18 @@ Le message doit changer en fonction des requêtes. Il faut désactiver le cache 
 
 ## Déploiement d'une application Python Flask
 
-TODO
+### Installation du serveur python uWSGI
+
+- Avec un script de post-déploiement : './deploy/post-deploy.sh'
+
+### Mise ne place d'un déploiement continu CI
+
+A partir du dépot github + Azure Devops Pipelines
+
+## TODO LATER
+
+### Installation d'une BDD mysql dans une VM à part
+
+### Connexion de la BDD avec les trois VMs python
+
+### Mise en place d'accès concurrentiels

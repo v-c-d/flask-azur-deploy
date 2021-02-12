@@ -124,7 +124,30 @@
                 "availabilitySet": {
                     "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
                 }
-            }
+            },
+            "resources": [
+                {
+                    "apiVersion": "2015-06-15",
+                    "type": "extensions",
+                    "name": "config-app",
+                    "location": "[resourceGroup().location]",
+                    "dependsOn": [
+                        "[concat('Microsoft.Compute/virtualMachines/', concat(variables('vmName'),copyindex()))]"
+                    ],
+                    "tags": {
+                        "displayName": "install-system-packages"
+                    },
+                    "properties": {
+                        "publisher": "Microsoft.Azure.Extensions",
+                        "type": "CustomScript",
+                        "typeHandlerVersion": "2.0",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
+                            "script": "IyEvYmluL3NoCgojIHBhY2thZ2VzIG5lZWRlZCB0byBpbnN0YWxsIHV3c2dpCnN1ZG8gYXB0LWdldCB1cGRhdGUKc3VkbyBhcHQtZ2V0IGluc3RhbGwgLXkgcHl0aG9uMy12ZW52CnN1ZG8gYXB0LWdldCBpbnN0YWxsIC15IGdjYyBidWlsZC1lc3NlbnRpYWwgcHl0aG9uMy1kZXYgbGlicGNyZTMgbGlicGNyZTMtZGV2Cgpta2RpciAtcCB+L1N0YXRzQXBwCmNkIH4vU3RhdHNBcHAKCnB5dGhvbjMgLW0gdmVudiBlbnYKCnNvdXJjZSBlbnYvYmluL2FjdGl2YXRlCgpwaXAgaW5zdGFsbCB3aGVlbApwaXAgaW5zdGFsbCB1d3NnaSBmbGFzawoKc3VkbyBjcCBzdGF0c2FwcC5zZXJ2aWNlIC9ldGMvc3lzdGVtZC9zeXN0ZW0vc3RhdHNhcHAu"
+                        }
+                    }
+                }
+            ]
         }
     ],
     "outputs": {

@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve StatsApp
+After=network.target
+
+[Service]
+User=eltov
+Group=www-data
+WorkingDirectory=/home/eltov/StatsApp
+Environment="PATH=/home/eltov/StatsApp/env/bin"
+ExecStart=/home/eltov/StatsApp/env/bin/uwsgi --ini uwsgi.ini
+
+[Install]
+WantedBy=multi-user.target
